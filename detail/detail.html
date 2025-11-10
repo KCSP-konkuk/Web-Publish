@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>농산물 가격 분석 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2C7A51",
+                        "background-light": "#F5F7FA",
+                        "background-dark": "#12181F",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E293B",
+                        "text-light": "#333333",
+                        "text-dark": "#E2E8F0",
+                        "subtext-light": "#64748B",
+                        "subtext-dark": "#94A3B8",
+                        "border-light": "#E2E8F0",
+                        "border-dark": "#334155",
+                        "accent-past": "#4A90E2",
+                        "accent-forecast": "#E87B3E"
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "Noto Sans KR", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Work Sans', 'Noto Sans KR', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-surface-light dark:bg-surface-dark shadow-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">agriculture</span>
+<h1 class="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">Agri-Price AI</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-primary" href="#">가격 분석</a>
+<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">대시보드</a>
+<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">시장 동향</a>
+<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">리포트</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-full text-subtext-light dark:text-subtext-dark hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center p-2 rounded-full text-subtext-light dark:text-subtext-dark hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img class="h-10 w-10 rounded-full" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4JkzHmHW_bAA0XixCWNnWyirl2BS5NVdKQKNXX_ajPENxeaDAyFeAl7S7dMA00zPcj-gyMf2S8rIz4ffgFSlJ90eoGsbVjCp5SqNMrxl9QeGaNz7lg71J3XEeQjmGCbxgTCxoKB7a3yO61ZGZ1JqWkhThRTCj6VpF83XrGgJjzGbljhgZEbpWGRIjPTedGZ1x6oCMxk0QzmwsSgst7MeKR0Zk5rU9mAGQ_sIf1bqwPhFN05P6vR3k8uAKtxvuUOhTLtvty-DNCJ8"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="space-y-8">
+<!-- PageHeading -->
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h2 class="text-3xl font-extrabold tracking-tight text-text-light dark:text-text-dark">농산물 가격 분석: 배추</h2>
+<p class="text-base font-normal text-subtext-light dark:text-subtext-dark">과거, 현재, 그리고 AI 예측 가격 데이터를 시각적으로 분석하세요.</p>
+</div>
+<button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-bold leading-normal tracking-[0.015em] rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+<span class="truncate">데이터 다운로드</span>
+</button>
+</div>
+<!-- Filter & Control Panel -->
+<div class="p-4 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- 농산물 선택 -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-light dark:text-text-dark" for="product-select">농산물 선택</label>
+<select class="w-full h-10 px-3 text-base bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" id="product-select">
+<option>배추</option>
+<option>사과</option>
+<option>마늘</option>
+<option>양파</option>
+</select>
+</div>
+<!-- 기간 설정 -->
+<div class="flex flex-col gap-2">
+<p class="text-sm font-semibold text-text-light dark:text-text-dark">기간 설정</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-primary/20 text-primary">최근 1개월</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">1년</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">전체</button>
+<button class="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span>지정</span>
+</button>
+</div>
+</div>
+<!-- 데이터 종류 -->
+<div class="flex flex-col gap-2">
+<p class="text-sm font-semibold text-text-light dark:text-text-dark">데이터 종류</p>
+<div class="flex items-center gap-4 pt-1">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm">과거/현재</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-gray-300 text-accent-forecast focus:ring-accent-forecast" type="checkbox"/>
+<span class="text-sm">AI 예측</span>
+</label>
+</div>
+</div>
+<!-- 단위 -->
+<div class="flex flex-col gap-2">
+<p class="text-sm font-semibold text-text-light dark:text-text-dark">단위</p>
+<div class="flex items-center gap-1 p-1 bg-gray-100 dark:bg-gray-700 rounded-lg">
+<button class="flex-1 text-center text-sm py-1 rounded-md bg-surface-light dark:bg-surface-dark shadow-sm">일별</button>
+<button class="flex-1 text-center text-sm py-1 rounded-md text-subtext-light dark:text-subtext-dark">주별</button>
+<button class="flex-1 text-center text-sm py-1 rounded-md text-subtext-light dark:text-subtext-dark">월별</button>
+</div>
+</div>
+</div>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-5 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">현재 평균 도매가</p>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-text-light dark:text-text-dark">2,580원</p>
+<span class="text-sm text-subtext-light dark:text-subtext-dark">/kg</span>
+</div>
+</div>
+<div class="p-5 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">전일 대비</p>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-red-500">▼ 120원</p>
+<span class="text-sm font-semibold text-red-500">(-4.4%)</span>
+</div>
+</div>
+<div class="p-5 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">최근 1개월 최고가</p>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-text-light dark:text-text-dark">3,120원</p>
+<span class="text-sm text-subtext-light dark:text-subtext-dark">/kg</span>
+</div>
+</div>
+<div class="p-5 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<p class="text-sm font-medium text-subtext-light dark:text-subtext-dark">최근 1개월 최저가</p>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-text-light dark:text-text-dark">2,450원</p>
+<span class="text-sm text-subtext-light dark:text-subtext-dark">/kg</span>
+</div>
+</div>
+</div>
+<!-- Main Chart -->
+<div class="p-6 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+<div>
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">배추 가격 추이</h3>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">기간: 2023.10.01 ~ 2023.10.31</p>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-accent-past"></div>
+<span>과거/현재 가격</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-accent-forecast"></div>
+<span>AI 예측 가격</span>
+</div>
+</div>
+</div>
+<div>
+<img class="w-full h-auto rounded-lg" data-alt="A line graph showing the price trend of cabbage over the last month, with one line for actual price and another dotted line for AI predicted price." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9nzxAT98Ew2Y1V5w7ojx4I47zfCdu19K1oLzqrjcaN55PFq31S3DPYCPlonU7Sku-F6kI2ET2eSfviWRconfDFOiwv6-M_9PcrmCeYruQMMNALfAFSaiwIPBR30XEc2J048dgpRHa1MJt0R4JSVwIegT33CXSC09fMos7ymlx_g5Eiq5JhdqO8UeTxcXV9X5TcN1QR0vaYP5ebLBct7csuHUUYhdZngfAzoEefVqLopaDx1yNtHSL4fGcyCGn2s97j5HKAJ9RQPY"/>
+</div>
+</div>
+<!-- Data Table -->
+<div class="p-6 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
+<div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+<h3 class="text-lg font-bold text-text-light dark:text-text-dark">상세 데이터</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-subtext-light dark:text-subtext-dark">search</span>
+<input class="w-full md:w-64 h-10 pl-10 pr-4 text-sm bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" placeholder="날짜 검색..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="text-xs text-subtext-light dark:text-subtext-dark uppercase bg-background-light dark:bg-background-dark">
+<tr>
+<th class="px-6 py-3 rounded-l-lg" scope="col">날짜</th>
+<th class="px-6 py-3" scope="col">가격 (원/kg)</th>
+<th class="px-6 py-3" scope="col">등락률</th>
+<th class="px-6 py-3 rounded-r-lg" scope="col">거래량 (톤)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-surface-light dark:bg-surface-dark border-b dark:border-border-dark">
+<td class="px-6 py-4 font-medium whitespace-nowrap">2023-10-26</td>
+<td class="px-6 py-4">2,580</td>
+<td class="px-6 py-4 text-red-500">-4.4%</td>
+<td class="px-6 py-4">15,230</td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark border-b dark:border-border-dark">
+<td class="px-6 py-4 font-medium whitespace-nowrap">2023-10-25</td>
+<td class="px-6 py-4">2,700</td>
+<td class="px-6 py-4 text-blue-500">+1.5%</td>
+<td class="px-6 py-4">14,890</td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark border-b dark:border-border-dark">
+<td class="px-6 py-4 font-medium whitespace-nowrap">2023-10-24</td>
+<td class="px-6 py-4">2,660</td>
+<td class="px-6 py-4 text-subtext-light dark:text-subtext-dark">0.0%</td>
+<td class="px-6 py-4">16,110</td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark border-b dark:border-border-dark">
+<td class="px-6 py-4 font-medium whitespace-nowrap">2023-10-23</td>
+<td class="px-6 py-4">2,660</td>
+<td class="px-6 py-4 text-red-500">-2.2%</td>
+<td class="px-6 py-4">15,540</td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark">
+<td class="px-6 py-4 font-medium whitespace-nowrap">2023-10-22</td>
+<td class="px-6 py-4">2,720</td>
+<td class="px-6 py-4 text-blue-500">+0.7%</td>
+<td class="px-6 py-4">14,320</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

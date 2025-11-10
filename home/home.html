@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriForecast - 농산물 가격 예측 대시보드</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2C5E1A",
+            "primary-light": "#F0F5F0",
+            "accent": "#FFC700",
+            "text-main": "#333333",
+            "price-up": "#D9534F",
+            "price-down": "#337AB7",
+            "background-light": "#f7f8f6",
+            "background-dark": "#182111",
+          },
+          fontFamily: {
+            "display": ["Work Sans", "Noto Sans KR", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-gray-200">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<div class="flex flex-1 justify-center">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 px-10 py-3 dark:border-primary/30">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-primary text-xl font-bold leading-tight tracking-[-0.015em]">AgriForecast</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-9">
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary-light" href="#">전체 농산물</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary-light" href="#">시장 분석</a>
+<a class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal hover:text-primary dark:hover:text-primary-light" href="#">내 관심 목록</a>
+</div>
+<div class="flex gap-2">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-primary-light dark:bg-background-dark dark:border dark:border-primary/30 text-text-main dark:text-gray-200 gap-2 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-primary-light dark:bg-background-dark dark:border dark:border-primary/30 text-text-main dark:text-gray-200 gap-2 text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEguDXPhY0FbKVvYxjjW-itvK6H37a_7w2xm14RxsBzQsjb-tIXZbB5hyvmNs6hoWilkr18wz860E9g2huIs_3Ltq6hjIsIWWI-y-YQc2dgl76wPFTiOzmnHMwJigJQykCkeaSTJMFEgjYj0BazsVskFgIkWDtbl6BH4MOhhKUDmlzrUO6weWh3XCpzyQOvbumTiT-xUbpW155XRmykp_FKzix0eVBAo4fCvlfx8nKtffyye5qxv750or1gXsFyoRQ46GhAF-yJ2s");'></div>
+</div>
+</header>
+<main class="p-10 space-y-8">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3">
+<p class="text-text-main dark:text-gray-100 text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">메인 대시보드</p>
+</div>
+<!-- Key Metrics -->
+<section>
+<h2 class="text-text-main dark:text-gray-100 text-lg font-bold mb-4">오늘의 주요 농산물 가격</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stats -->
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30">
+<p class="text-text-main dark:text-gray-200 text-base font-medium leading-normal">배추 (1포기)</p>
+<p class="text-text-main dark:text-gray-100 tracking-light text-2xl font-bold leading-tight">3,500원</p>
+<p class="text-price-up text-base font-medium leading-normal">▲ 5.2%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30">
+<p class="text-text-main dark:text-gray-200 text-base font-medium leading-normal">쌀 (20kg)</p>
+<p class="text-text-main dark:text-gray-100 tracking-light text-2xl font-bold leading-tight">48,000원</p>
+<p class="text-price-down text-base font-medium leading-normal">▼ 1.5%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30">
+<p class="text-text-main dark:text-gray-200 text-base font-medium leading-normal">사과 (1개)</p>
+<p class="text-text-main dark:text-gray-100 tracking-light text-2xl font-bold leading-tight">2,100원</p>
+<p class="text-price-up text-base font-medium leading-normal">▲ 3.8%</p>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30">
+<p class="text-text-main dark:text-gray-200 text-base font-medium leading-normal">돼지고기 (600g)</p>
+<p class="text-text-main dark:text-gray-100 tracking-light text-2xl font-bold leading-tight">12,500원</p>
+<p class="text-text-main dark:text-gray-200 text-base font-medium leading-normal">― 0.0%</p>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<!-- Price Forecast Chart -->
+<section>
+<!-- SectionHeader -->
+<h2 class="text-text-main dark:text-gray-100 text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">주요 품목 가격 예측</h2>
+<!-- Chips -->
+<div class="flex gap-3 pb-4 overflow-x-auto">
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary pl-4 pr-4">
+<p class="text-white text-sm font-medium leading-normal">배추</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary-light dark:bg-primary/20 pl-4 pr-4">
+<p class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal">쌀</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary-light dark:bg-primary/20 pl-4 pr-4">
+<p class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal">사과</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary-light dark:bg-primary/20 pl-4 pr-4">
+<p class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal">돼지고기</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg bg-primary-light dark:bg-primary/20 pl-4 pr-4">
+<p class="text-text-main dark:text-gray-200 text-sm font-medium leading-normal">고등어</p>
+</div>
+</div>
+<div class="rounded-xl bg-primary-light dark:bg-primary/10 p-6 border border-primary/20 dark:border-primary/30">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-text-main dark:text-gray-100">배추 가격 추이 및 3개월 예측</h3>
+<div class="flex gap-2 rounded-lg bg-white dark:bg-background-dark p-1 border border-primary/20 dark:border-primary/30">
+<button class="px-3 py-1 text-xs font-medium rounded-md text-text-main dark:text-gray-300">1개월</button>
+<button class="px-3 py-1 text-xs font-medium rounded-md bg-primary text-white">3개월</button>
+<button class="px-3 py-1 text-xs font-medium rounded-md text-text-main dark:text-gray-300">6개월</button>
+<button class="px-3 py-1 text-xs font-medium rounded-md text-text-main dark:text-gray-300">1년</button>
+</div>
+</div>
+<div class="w-full h-80 flex items-center justify-center bg-white dark:bg-background-dark rounded-lg">
+<img alt="Price forecast line chart for cabbage showing historical data and future predictions." class="w-full h-full object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrRtWj0jc7EX70LvmTMNIuVVntBtd-nrbWxbKukyWU9-Wv5HLt_lr9G88ZwpzjoBAhQ2cE30SexQB-T1qAiECSy4XwJhtyNT6zqyjQdgGUi3KSdfcMuVkdeNKhec_GhTypRR_h_9aQDkaamL3D0lXXYCHGugJLP5ihD3LOWTN5q6MukRof12pNnm3jKQms19bf0bTvLPjbFVaa93QaribeBpEzrn5rxic6qBnK_n1sW8NLp_72vbFae6LIdBb9XincviC453TTAYE"/>
+</div>
+</div>
+</section>
+<!-- Watchlist Table -->
+<section>
+<h2 class="text-text-main dark:text-gray-100 text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">내 관심 품목</h2>
+<div class="rounded-xl bg-primary-light dark:bg-primary/10 p-4 border border-primary/20 dark:border-primary/30">
+<table class="w-full text-left">
+<thead class="border-b border-primary/30">
+<tr>
+<th class="p-3 text-sm font-semibold text-text-main/70 dark:text-gray-400">품목명</th>
+<th class="p-3 text-sm font-semibold text-text-main/70 dark:text-gray-400">현재가</th>
+<th class="p-3 text-sm font-semibold text-text-main/70 dark:text-gray-400">등락률</th>
+<th class="p-3 text-sm font-semibold text-text-main/70 dark:text-gray-400">거래량</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-primary/20 dark:border-primary/30">
+<td class="p-3 font-medium text-text-main dark:text-gray-200">양파 (1kg)</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">2,500원</td>
+<td class="p-3 font-medium text-price-up">▲ 2.1%</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">1,200톤</td>
+</tr>
+<tr class="border-b border-primary/20 dark:border-primary/30">
+<td class="p-3 font-medium text-text-main dark:text-gray-200">대파 (1단)</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">3,200원</td>
+<td class="p-3 font-medium text-price-down">▼ 0.8%</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">850톤</td>
+</tr>
+<tr>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">계란 (30구)</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">7,800원</td>
+<td class="p-3 font-medium text-price-up">▲ 1.2%</td>
+<td class="p-3 font-medium text-text-main dark:text-gray-200">2,500만개</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Market Trends & News -->
+<aside class="lg:col-span-1">
+<section>
+<h2 class="text-text-main dark:text-gray-100 text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">최신 시장 동향 및 뉴스</h2>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30 space-y-2">
+<p class="font-bold text-text-main dark:text-gray-100">"역대급 폭염 예고, 채소 가격 급등 우려"</p>
+<p class="text-sm text-text-main/80 dark:text-gray-300">기상청 발표에 따르면 올 여름 기록적인 폭염이 예상되어 노지 채소 수급에 비상이 걸릴 것으로 보입니다.</p>
+<div class="text-xs text-text-main/60 dark:text-gray-400">농업 신문 · 2024-05-21</div>
+</div>
+<div class="p-4 rounded-xl bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30 space-y-2">
+<p class="font-bold text-text-main dark:text-gray-100">"정부, 농산물 가격 안정을 위한 비축 물량 방출 결정"</p>
+<p class="text-sm text-text-main/80 dark:text-gray-300">농림축산식품부는 주요 농산물 가격 안정을 위해 비축된 물량을 시장에 공급할 것이라고 밝혔습니다.</p>
+<div class="text-xs text-text-main/60 dark:text-gray-400">연합뉴스 · 2024-05-20</div>
+</div>
+<div class="p-4 rounded-xl bg-primary-light dark:bg-primary/10 border border-primary/20 dark:border-primary/30 space-y-2">
+<p class="font-bold text-text-main dark:text-gray-100">"수입 과일 관세 인하, 국내 과일 시장에 미칠 영향은?"</p>
+<p class="text-sm text-text-main/80 dark:text-gray-300">정부의 수입 과일 관세 인하 조치가 장바구니 물가 안정에 기여할지, 국내 과수 농가에 타격을 줄지 주목됩니다.</p>
+<div class="text-xs text-text-main/60 dark:text-gray-400">경제 일보 · 2024-05-19</div>
+</div>
+<div class="p-4 rounded-xl bg-accent/20 dark:bg-accent/10 border border-accent/30 dark:border-accent/30 space-y-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-xl">warning</span>
+<p class="font-bold text-text-main dark:text-accent">[긴급] 강원도 지역 냉해 피해 발생, 배추 생산량 감소 전망</p>
+</div>
+<div class="text-xs text-text-main/60 dark:text-gray-400 pl-8">AgriForecast 분석팀 · 2024-05-22</div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>농산물 가격 예측 플랫폼 - 로그인</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#63cf17",
+              "background-light": "#f7f8f6",
+              "background-dark": "#182111",
+              "green-brand": {
+                DEFAULT: "#1A535C",
+                "light": "#2E7C88"
+              },
+              "off-white": "#F7F9F9",
+              "charcoal-gray": "#2B2B2B",
+              "muted-blue": "#4E8098"
+            },
+            fontFamily: {
+              "display": ["Work Sans", "Noto Sans KR", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="flex flex-1 w-full">
+<div class="grid grid-cols-1 md:grid-cols-2 min-h-screen w-full">
+<!-- Left Branding Section -->
+<div class="relative hidden md:flex flex-col justify-between p-12 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMfkB3a2ifCryhSREMUjWlbHIveaIljlCc6kdtsfehQbMjLll3VNwa1ut4ux8hxP3ChAsIkCjw52-8CHL24BdOQzcUpmejniwxAKPk4jDS2M-OnA95bzDT09kOonfAhvmRdmJG53B0wBHClwFEQDepOJ7PlyXuOM4AjXBbJvQw-i1G00HcWvUP2dERIu_0vOrlt1RbBAogd1xIzRlhc5bqUW4nAzjjzN06RUZjfxYHGFVKvxnFjHHLrtW5IbbjGwtghD3tctzXAlc');">
+<div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+<div class="relative z-10 flex flex-col gap-4 text-white">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl text-primary">analytics</span>
+<h1 class="text-2xl font-bold">AgriForecaster</h1>
+</div>
+</div>
+<div class="relative z-10">
+<h2 class="text-white text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em]">데이터로 농산물의<br/>미래 가치를 예측하세요</h2>
+<p class="text-white/80 text-lg mt-4">정확한 가격 예측으로 성공적인 농업 비즈니스를 계획하세요.</p>
+</div>
+</div>
+<!-- Right Form Section -->
+<div class="flex items-center justify-center w-full bg-off-white dark:bg-background-dark p-6 sm:p-8 lg:p-12">
+<div class="w-full max-w-md">
+<div class="flex min-w-72 flex-col gap-3 mb-8">
+<p class="text-charcoal-gray dark:text-background-light text-4xl font-black leading-tight tracking-[-0.033em]">로그인</p>
+<p class="text-muted-blue dark:text-gray-400 text-base font-normal leading-normal">플랫폼에 오신 것을 환영합니다. 계정에 로그인하세요.</p>
+</div>
+<form class="flex flex-col gap-6">
+<div class="flex flex-col">
+<label class="flex flex-col w-full">
+<p class="text-charcoal-gray dark:text-background-light text-base font-medium leading-normal pb-2">아이디 (이메일)</p>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-charcoal-gray dark:text-background-light focus:outline-0 focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 h-14 placeholder:text-gray-400 dark:placeholder-gray-500 p-[15px] text-base font-normal leading-normal transition-colors" placeholder="이메일 주소를 입력하세요" type="email" value=""/>
+</label>
+</div>
+<div class="flex flex-col">
+<label class="flex flex-col w-full">
+<p class="text-charcoal-gray dark:text-background-light text-base font-medium leading-normal pb-2">비밀번호</p>
+<div class="flex w-full flex-1 items-stretch">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-charcoal-gray dark:text-background-light focus:outline-0 focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 h-14 placeholder:text-gray-400 dark:placeholder-gray-500 p-[15px] pr-2 text-base font-normal leading-normal border-r-0 transition-colors" placeholder="비밀번호를 입력하세요" type="password" value=""/>
+<div class="text-gray-400 dark:text-gray-500 flex border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 items-center justify-center pr-[15px] rounded-r-lg border-l-0">
+<span class="material-symbols-outlined cursor-pointer">visibility</span>
+</div>
+</div>
+</label>
+</div>
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-green-brand hover:bg-green-brand-light text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">로그인</span>
+</button>
+</form>
+<div class="mt-8 text-center text-sm font-medium">
+<p class="text-charcoal-gray dark:text-gray-400">아직 회원이 아니신가요? <a class="font-bold text-muted-blue hover:underline" href="#">회원가입</a></p>
+<p class="mt-2"><a class="font-bold text-muted-blue hover:underline" href="#">아이디/비밀번호 찾기</a></p>
+</div>
+<div class="relative mt-8 flex items-center">
+<div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+<span class="flex-shrink mx-4 text-xs font-medium text-gray-400 dark:text-gray-500">또는</span>
+<div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+</div>
+<div class="mt-6 flex flex-col sm:flex-row gap-4">
+<button class="flex-1 flex items-center justify-center gap-3 h-12 px-5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-charcoal-gray dark:text-background-light font-bold text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<img class="w-5 h-5" data-alt="Google logo" src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"/>
+<span class="truncate">Google로 계속하기</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-3 h-12 px-5 rounded-lg bg-[#FEE500] text-black font-bold text-sm hover:opacity-90 transition-opacity">
+<svg class="w-5 h-5" data-alt="Kakao logo" fill="none" viewbox="0 0 38 36" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 0C8.504 0 0 7.072 0 15.792C0 21.312 3.52 26.112 8.796 28.8L6.868 35.028C6.764 35.376 7.156 35.676 7.468 35.484L14.732 30.768C16.088 31.116 17.524 31.32 19 31.32C29.496 31.32 38 24.248 38 15.528C38 6.944 29.496 0 19 0Z" fill="rgba(0,0,0,0.9)"></path>
+</svg>
+<span class="truncate">카카오로 계속하기</span>
+</button>
+</div>
+<div class="mt-6 text-center text-red-600 font-medium h-5" data-alt="Error Message Area">
+<!-- Example: <p>아이디를 입력해주세요.</p> -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
