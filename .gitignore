@@ -1,0 +1,20 @@
+# VS Code personal settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node.js (if applicable)
+node_modules/
