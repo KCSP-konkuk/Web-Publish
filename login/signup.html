@@ -83,7 +83,7 @@
 
     button {
       width: 100%;
-      background-color: #86d957;
+      background-color: #1A535C;
       color: white;
       border: none;
       border-radius: 6px;
@@ -95,43 +95,43 @@
     }
 
     button:hover {
-      background-color: #5f993d;
+      background-color: #2E7C88;
     }
   </style>
 </head>
 <body>
   <div class="signup-container">
-    <h2>AgriForecast</h2>
+    <h2>AgriForecaster</h2>
     <form id="signupForm">
       <div class="form-group">
-        <label for="fullname">이름(name)</label>
+        <label for="fullname">이름</label>
         <input type="text" id="fullname" placeholder="e.g., 김농부" required />
       </div>
 
       <div class="form-group">
-        <label for="username">아이디(ID)</label>
-        <input type="text" id="username" placeholder="아이디를 입력하세요." required />
+        <label for="username">아이디</label>
+        <input type="text" id="username" placeholder="아이디를 입력하세요" required />
       </div>
 
       <div class="form-group">
-        <label for="email">이메일(E-mail)</label>
+        <label for="email">이메일</label>
         <input type="email" id="email" placeholder="you@example.com" required />
       </div>
 
       <div class="form-group">
-        <label for="password">비밀번호(password)</label>
+        <label for="password">비밀번호</label>
         <input type="password" id="password" placeholder="비밀번호를 입력하세요" required />
         <span class="show-password" onclick="togglePassword('password')">👁️</span>
       </div>
 
       <div class="form-group">
-        <label for="confirm">비밀번호 확인(confirm password)</label>
-        <input type="password" id="confirm" placeholder="비밀번호를 다시 입력하세요." required />
+        <label for="confirm">비밀번호 확인</label>
+        <input type="password" id="confirm" placeholder="비밀번호를 다시 입력하세요" required />
         <span class="show-password" onclick="togglePassword('confirm')">👁️</span>
         <p id="errorMsg" class="error-message" style="display:none;">Passwords do not match.</p>
       </div>
 
-      <button type="submit">Sign Up</button>
+      <button type="submit">회원가입</button>
     </form>
   </div>
 
