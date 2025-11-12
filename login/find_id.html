@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your ID</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .findid-container {
+      background: #fff;
+      padding: 40px 50px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 360px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #222;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus {
+      border-color: #86d957;
+    }
+
+    .error {
+      border-color: #e74c3c;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 12px;
+      margin-top: 4px;
+      text-align: left;
+    }
+
+    button {
+      width: 100%;
+      background-color: #1A535C;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2E7C88;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      background-color: #f0f8ff;
+      border: 1px solid #b3daff;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #86d957;
+      display: none;
+    }
+
+    a.back-login {
+      display: block;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a.back-login:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="findid-container">
+    <h2>아이디 찾기</h2>
+    <p class="subtitle">Enter your name and email</p>
+
+    <form id="findIdForm">
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" placeholder="e.g., 김농부" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" placeholder="you@example.com" required />
+        <p id="errorMsg" class="error-message" style="display:none;">No account found with this information.</p>
+      </div>
+
+      <button type="submit">Find ID</button>
+    </form>
+
+    <div id="resultBox" class="result-box">
+      Your ID is: <strong id="foundId"></strong>
+    </div>
+
+    <a href="login.html" class="back-login">로그인 화면으로</a>
+  </div>
+
+  <script>
+    const form = document.getElementById('findIdForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const resultBox = document.getElementById('resultBox');
+    const foundId = document.getElementById('foundId');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // 샘플 데이터 (DB 대신 임시 하드코딩)
+    const mockAccounts = [
+      { name: 'Jane Doe', email: 'jane@example.com', id: 'jane123' },
+      { name: 'John Smith', email: 'john@abc.com', id: 'john_smith89' },
+      { name: '김상혁', email: 'shpark@example.com', id: 'sanghyuk01' }
+    ];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nameVal = nameInput.value.trim();
+      const emailVal = emailInput.value.trim();
+
+      const user = mockAccounts.find(
+        acc => acc.name === nameVal && acc.email === emailVal
+      );
+
+      if (user) {
+        foundId.textContent = user.id;
+        resultBox.style.display = 'block';
+        errorMsg.style.display = 'none';
+      } else {
+        resultBox.style.display = 'none';
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
