@@ -48,32 +48,30 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
 <div class="flex flex-col min-h-screen">
-<!-- TopNavBar -->
-<header class="sticky top-0 z-50 bg-surface-light dark:bg-surface-dark shadow-sm border-b border-border-light dark:border-border-dark">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-16">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-3xl">agriculture</span>
-<h1 class="text-xl font-bold tracking-tight text-text-light dark:text-text-dark">Agri-Price AI</h1>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-semibold text-primary" href="#">가격 분석</a>
-<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">대시보드</a>
-<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">시장 동향</a>
-<a class="text-sm font-medium text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">리포트</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="flex items-center justify-center p-2 rounded-full text-subtext-light dark:text-subtext-dark hover:bg-gray-100 dark:hover:bg-gray-700">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="flex items-center justify-center p-2 rounded-full text-subtext-light dark:text-subtext-dark hover:bg-gray-100 dark:hover:bg-gray-700">
-<span class="material-symbols-outlined">settings</span>
-</button>
-<img class="h-10 w-10 rounded-full" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4JkzHmHW_bAA0XixCWNnWyirl2BS5NVdKQKNXX_ajPENxeaDAyFeAl7S7dMA00zPcj-gyMf2S8rIz4ffgFSlJ90eoGsbVjCp5SqNMrxl9QeGaNz7lg71J3XEeQjmGCbxgTCxoKB7a3yO61ZGZ1JqWkhThRTCj6VpF83XrGgJjzGbljhgZEbpWGRIjPTedGZ1x6oCMxk0QzmwsSgst7MeKR0Zk5rU9mAGQ_sIf1bqwPhFN05P6vR3k8uAKtxvuUOhTLtvty-DNCJ8"/>
-</div>
-</div>
-</div>
-</header>
+<!-- ✅ 상단바 수정 -->
+          <header class="flex items-center justify-between border-b border-solid border-primary/20 px-10 py-3 dark:border-primary/30">
+            <div class="flex items-center gap-4 text-primary">
+              <div class="size-6">
+                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"/>
+                </svg>
+              </div>
+              <h2 class="text-primary text-xl font-bold leading-tight tracking-[-0.015em]">AgriForecast</h2>
+            </div>
+
+            <div class="flex flex-1 justify-end gap-8 items-center">
+              <div class="flex items-center gap-9">
+                <a href="#" class="text-text-main dark:text-gray-200 text-sm font-medium hover:text-primary">홈</a>
+                <a href="#" class="text-text-main dark:text-gray-200 text-sm font-medium hover:text-primary">상세검색</a>
+                <a href="#" class="text-text-main dark:text-gray-200 text-sm font-medium hover:text-primary">커뮤니티</a>
+              </div>
+
+              <!-- 종모양, 설정 아이콘 제거 -->
+              <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEguDXPhY0FbKVvYxjjW-itvK6H37a_7w2xm14RxsBzQsjb-tIXZbB5hyvmNs6hoWilkr18wz860E9g2huIs_3Ltq6hjIsIWWI-y-YQc2dgl76wPFTiOzmnHMwJigJQykCkeaSTJMFEgjYj0BazsVskFgIkWDtbl6BH4MOhhKUDmlzrUO6weWh3XCpzyQOvbumTiT-xUbpW155XRmykp_FKzix0eVBAo4fCvlfx8nKtffyye5qxv750or1gXsFyoRQ46GhAF-yJ2s");'>
+              </div>
+            </div>
+          </header>
 <!-- Main Content -->
 <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 <div class="space-y-8">
@@ -83,17 +81,21 @@
 <h2 class="text-3xl font-extrabold tracking-tight text-text-light dark:text-text-dark">농산물 가격 분석: 배추</h2>
 <p class="text-base font-normal text-subtext-light dark:text-subtext-dark">과거, 현재, 그리고 AI 예측 가격 데이터를 시각적으로 분석하세요.</p>
 </div>
-<button class="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-bold leading-normal tracking-[0.015em] rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors">
-<span class="material-symbols-outlined text-xl">download</span>
-<span class="truncate">데이터 다운로드</span>
-</button>
 </div>
 <!-- Filter & Control Panel -->
 <div class="p-4 bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- 농산물 선택 -->
 <div class="flex flex-col gap-2">
-<label class="text-sm font-semibold text-text-light dark:text-text-dark" for="product-select">농산물 선택</label>
+<label class="text-sm font-semibold text-text-light dark:text-text-dark" for="product-select">품목 선택</label>
+<select class="w-full h-10 px-3 text-base bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" id="product-select">
+<option>야채류</option>
+<option>과일류</option>
+</select>
+</div>
+<!-- 농산물 선택 -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-light dark:text-text-dark" for="product-select">품종 선택</label>
 <select class="w-full h-10 px-3 text-base bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition" id="product-select">
 <option>배추</option>
 <option>사과</option>
@@ -114,20 +116,7 @@
 </button>
 </div>
 </div>
-<!-- 데이터 종류 -->
-<div class="flex flex-col gap-2">
-<p class="text-sm font-semibold text-text-light dark:text-text-dark">데이터 종류</p>
-<div class="flex items-center gap-4 pt-1">
-<label class="flex items-center gap-2 cursor-pointer">
-<input checked="" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
-<span class="text-sm">과거/현재</span>
-</label>
-<label class="flex items-center gap-2 cursor-pointer">
-<input checked="" class="h-4 w-4 rounded border-gray-300 text-accent-forecast focus:ring-accent-forecast" type="checkbox"/>
-<span class="text-sm">AI 예측</span>
-</label>
-</div>
-</div>
+
 <!-- 단위 -->
 <div class="flex flex-col gap-2">
 <p class="text-sm font-semibold text-text-light dark:text-text-dark">단위</p>
