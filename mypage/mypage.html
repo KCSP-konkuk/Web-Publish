@@ -7,37 +7,8 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#4CAF50",
-            "background-light": "#F5F5F5",
-            "background-dark": "#1a1a1a",
-            "surface-light": "#ffffff",
-            "surface-dark": "#2a2a2a",
-            "text-light": "#333333",
-            "text-dark": "#e0e0e0",
-            "text-secondary-light": "#666666",
-            "text-secondary-dark": "#b0b0b0",
-            "border-light": "#e0e0e0",
-            "border-dark": "#444444",
-          },
-          fontFamily: {
-            "display": ["Work Sans", "Noto Sans KR", "sans-serif"]
-          },
-          borderRadius: {
-            "DEFAULT": "0.5rem",
-            "lg": "0.75rem",
-            "xl": "1rem",
-            "full": "9999px"
-          },
-        },
-      },
-    }
-  </script>
+<link rel="stylesheet" href="../styles.css" />
+<script src="../tailwind-config.js"></script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
