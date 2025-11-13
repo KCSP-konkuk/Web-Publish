@@ -7,44 +7,8 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2C7A51",
-                        "background-light": "#F5F7FA",
-                        "background-dark": "#12181F",
-                        "surface-light": "#FFFFFF",
-                        "surface-dark": "#1E293B",
-                        "text-light": "#333333",
-                        "text-dark": "#E2E8F0",
-                        "subtext-light": "#64748B",
-                        "subtext-dark": "#94A3B8",
-                        "border-light": "#E2E8F0",
-                        "border-dark": "#334155",
-                        "accent-past": "#4A90E2",
-                        "accent-forecast": "#E87B3E"
-                    },
-                    fontFamily: {
-                        "display": ["Work Sans", "Noto Sans KR", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }
-    </script>
-<style>
-        body {
-            font-family: 'Work Sans', 'Noto Sans KR', sans-serif;
-        }
-    </style>
+<link rel="stylesheet" href="../styles.css" />
+<script src="../tailwind-config.js"></script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
 <div class="flex flex-col min-h-screen">
